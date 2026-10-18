@@ -6,6 +6,8 @@ export const PERSONAL_INFO = {
   introLine: "Building backend systems in {{k|Java Spring Boot}} and {{k|Node.js}}, with well-designed databases and {{k|React}} interfaces.",
   status: "Available for Software Developer & Analyst Roles",
   location: "Bhopal, India",
+  photo: "/images/my-photo.webp",
+  photoAlt: "Yogesh Singh Bhadoriya",
   education: {
     degree: "B.Tech in Computer Science & Engineering",
     institution: "SAGE University, Bhopal",
@@ -71,6 +73,11 @@ export const PROJECTS_DATA = [
     githubUrl: "https://github.com/Yogesh0209/trust-first-matrimonial-platform",
     // add real link here when the repo is public
     liveUrl: "",
+    image: "/images/milan.webp",
+    imageAlt: "Abstract glowing biometric fingerprint scanner in dark blue tones",
+    imageKind: "cover",
+    imageCredit: "Photo by George Prentzas on Unsplash",
+    imageCreditUrl: "https://unsplash.com/photos/a-glowing-fingerprint-on-a-dark-circular-scanner-surface-with-concentric-lines-1585079374502-415f8516dcc3",
     orbVariant: "holographic-eclipse",
     featured: true
   },
@@ -90,6 +97,11 @@ export const PROJECTS_DATA = [
     githubUrl: "",
     // add real link here when the repo is public
     liveUrl: "",
+    image: "/images/chainflow.webp",
+    imageAlt: "Rows of shelves with cardboard boxes and inventory containers in a large warehouse",
+    imageKind: "cover",
+    imageCredit: "Photo by Jacques Dillies on Unsplash",
+    imageCreditUrl: "https://unsplash.com/photos/brown-cardboard-boxes-on-white-metal-rack-fn_l1Y9Gg7g",
     orbVariant: "chrome-sphere",
     featured: true
   },
@@ -109,6 +121,11 @@ export const PROJECTS_DATA = [
     githubUrl: "",
     // add real link here when the repo is public
     liveUrl: "",
+    image: "/images/d2car.webp",
+    imageAlt: "Parked cars lined up inside a modern dark parking garage",
+    imageKind: "cover",
+    imageCredit: "Photo by Haberdoedas on Unsplash",
+    imageCreditUrl: "https://unsplash.com/photos/cars-are-parked-in-a-dark-parking-garage-59bd650bfd42",
     orbVariant: "iridescent-ring",
     featured: true
   }

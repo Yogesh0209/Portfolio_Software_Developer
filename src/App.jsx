@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
+import { ThemeProvider } from './context/ThemeProvider';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -59,36 +60,38 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-[#ededed] font-sans selection:bg-[#00A3FF] selection:text-white" style={{ overflowX: 'clip' }}>
-      {/* Scroll Progress Bar at the very top */}
-      <ScrollProgress />
+    <ThemeProvider>
+      <div className="bg-page-container relative min-h-screen bg-[#050505] text-[#ededed] font-sans selection:bg-[#00A3FF] selection:text-white transition-colors duration-300" style={{ overflowX: 'clip' }}>
+        {/* Scroll Progress Bar at the very top */}
+        <ScrollProgress />
 
-      {/* Film grain noise overlay (blend mode removed for 60fps mobile performance) */}
-      <div className="fixed inset-0 pointer-events-none z-40 bg-grain opacity-25" />
-      
-      {/* Architectural subtle grid pattern */}
-      <div className="fixed inset-0 pointer-events-none z-0 bg-grid-pattern opacity-40" />
+        {/* Film grain noise overlay (blend mode removed for 60fps mobile performance) */}
+        <div className="fixed inset-0 pointer-events-none z-40 bg-grain opacity-25" />
+        
+        {/* Architectural subtle grid pattern */}
+        <div className="fixed inset-0 pointer-events-none z-0 bg-grid-pattern opacity-40" />
 
-      {/* Ambient background soft light spot with subtle electric blue tint (disabled on mobile for 60fps) */}
-      <div className="hidden md:block fixed -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[#1F6FFF]/[0.03] rounded-full blur-[140px] pointer-events-none z-0" />
+        {/* Ambient background soft light spot with subtle electric blue tint (disabled on mobile for 60fps) */}
+        <div className="hidden md:block fixed -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[#1F6FFF]/[0.03] rounded-full blur-[140px] pointer-events-none z-0" />
 
-      {/* Faint cursor follow glow on desktop */}
-      <CursorGlow />
+        {/* Faint cursor follow glow on desktop */}
+        <CursorGlow />
 
-      {/* Main page layout */}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-1">
-          <Hero />
-          <About />
-          <TechMarquee />
-          <Projects />
-          <Experience />
-          <Skills />
-          <Contact />
-        </main>
-        <Footer />
+        {/* Main page layout */}
+        <div className="relative z-10 flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-1">
+            <Hero />
+            <About />
+            <TechMarquee />
+            <Projects />
+            <Experience />
+            <Skills />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }

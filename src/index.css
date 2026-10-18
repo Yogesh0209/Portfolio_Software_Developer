@@ -223,3 +223,254 @@
     transform: none !important;
   }
 }
+
+/* ========================================================
+   Light Theme System Variables & Rules
+   ======================================================== */
+html.light {
+  color-scheme: light;
+  --hl-function: #795e26;
+  --hl-type: #0969da;
+  --hl-string: #a31515;
+  --hl-keyword: #0550ae;
+  --hl-number: #098658;
+  --hl-control: #8250df;
+  --hl-comment: #57606a;
+}
+
+/* Page background and root text */
+html.light body,
+html.light .bg-page-container {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Grid pattern in light mode */
+html.light .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px) !important;
+}
+
+/* Base text color overrides for light mode */
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-silver-100 {
+  color: #0f172a !important;
+}
+
+html.light .text-silver-200 {
+  color: #1e293b !important;
+}
+
+html.light .text-silver-300,
+html.light .text-silver-300\/90 {
+  color: #334155 !important;
+}
+
+html.light .text-silver-400 {
+  color: #475569 !important;
+}
+
+html.light .text-silver-500 {
+  color: #64748b !important;
+}
+
+/* Gradient text headings in light mode */
+html.light .text-transparent.bg-clip-text {
+  background-image: linear-gradient(135deg, #0f172a 0%, #334155 100%) !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Light theme cards */
+html.light .dark-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.09) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .dark-card:hover {
+  border-color: rgba(0, 163, 255, 0.5) !important;
+  box-shadow: 0 14px 32px -8px rgba(0, 163, 255, 0.16), 0 0 20px -4px rgba(0, 163, 255, 0.08) !important;
+}
+
+/* Light theme borders */
+html.light .border-white\/10,
+html.light .border-white\/15,
+html.light .border-white\/20,
+html.light .border-white\/\[0\.05\],
+html.light .border-white\/\[0\.06\],
+html.light .border-white\/\[0\.07\],
+html.light .border-white\/\[0\.08\],
+html.light .border-white\/\[0\.09\] {
+  border-color: rgba(15, 23, 42, 0.09) !important;
+}
+
+/* Subtle background chips and badges */
+html.light .bg-white\/\[0\.02\],
+html.light .bg-white\/\[0\.03\],
+html.light .bg-white\/\[0\.04\],
+html.light .bg-white\/\[0\.05\] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .bg-white\/10 {
+  background-color: rgba(0, 163, 255, 0.08) !important;
+  color: #0284c7 !important;
+}
+
+/* Status indicator badge (Hero top pill) */
+html.light .bg-white\/\[0\.03\].backdrop-blur-sm {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(0, 163, 255, 0.35) !important;
+  box-shadow: 0 2px 10px rgba(0, 163, 255, 0.08) !important;
+}
+
+/* Section divider lines */
+html.light span.h-\[1px\].w-8.bg-white\/20,
+html.light .bg-white\/20 {
+  background-color: rgba(15, 23, 42, 0.18) !important;
+}
+
+/* Experience timeline line & nodes */
+html.light .bg-white\/\[0\.08\] {
+  background-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html.light #experience .rounded-full.bg-black {
+  background-color: #ffffff !important;
+}
+
+/* Tech Marquee Bar */
+html.light .tech-marquee-bar,
+html.light .bg-black\/40 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .marquee-fade-left {
+  background: linear-gradient(to right, #f8fafc, transparent) !important;
+}
+html.light .marquee-fade-right {
+  background: linear-gradient(to left, #f8fafc, transparent) !important;
+}
+
+/* Primary Pill Button (View projects) - Keep white text & icons */
+html.light .pill-primary {
+  background: linear-gradient(135deg, #1F6FFF 0%, #00A3FF 100%) !important;
+  border-color: #00A3FF !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(0, 163, 255, 0.4) !important;
+}
+
+html.light .pill-primary span,
+html.light .pill-primary svg,
+html.light .pill-primary * {
+  color: #ffffff !important;
+}
+
+/* Secondary Pill Buttons (GitHub, LinkedIn, Email, Resume) */
+html.light .pill-button {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 163, 255, 0.45) !important;
+  color: #0284c7 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .pill-button span,
+html.light .pill-button svg {
+  color: #0284c7 !important;
+}
+
+html.light .pill-button:hover {
+  background: linear-gradient(135deg, #1F6FFF 0%, #00A3FF 100%) !important;
+  border-color: #00A3FF !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(0, 163, 255, 0.35) !important;
+}
+
+html.light .pill-button:hover span,
+html.light .pill-button:hover svg {
+  color: #ffffff !important;
+}
+
+/* Project cards code / mock preview frame */
+html.light .bg-black\/60,
+html.light .bg-black\/70,
+html.light .bg-black\/75 {
+  background-color: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.light .bg-black\/60 *,
+html.light .bg-black\/70 *,
+html.light .bg-black\/75 * {
+  color: #e2e8f0 !important;
+}
+
+html.light .bg-black\/70 span.text-\[\#38bdf8\] {
+  color: #38bdf8 !important;
+}
+
+/* HUD Portrait in light mode */
+html.light .hud-portrait-card {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light .hud-vignette {
+  background: linear-gradient(to top, rgba(248, 250, 252, 0.95), rgba(248, 250, 252, 0.3) 40%, transparent) !important;
+}
+
+html.light .hud-status-badge {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(0, 163, 255, 0.4) !important;
+  color: #0284c7 !important;
+}
+
+html.light .hud-loc-badge {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: #475569 !important;
+}
+
+html.light .hud-bottom-panel {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .hud-bottom-panel .text-white {
+  color: #0f172a !important;
+}
+
+html.light .hud-bottom-panel .text-silver-400,
+html.light .hud-bottom-panel .text-silver-500 {
+  color: #64748b !important;
+}
+
+/* Header in light mode */
+html.light header.border-b,
+html.light header[class*="backdrop-blur-md"] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Mobile menu */
+html.light div.fixed.inset-0.z-50.md\:hidden {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+}
+
+html.light div.fixed.inset-0.z-50.md\:hidden .text-white {
+  color: #0f172a !important;
+}
+
+html.light div.fixed.inset-0.z-50.md\:hidden .text-silver-300,
+html.light div.fixed.inset-0.z-50.md\:hidden .text-silver-400 {
+  color: #475569 !important;
+}
+
+

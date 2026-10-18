@@ -11,6 +11,7 @@ import MagneticButton from './MagneticButton';
 
 function ProjectCard({ project, index }) {
   const cardRef = useRef(null);
+  const [imageError, setImageError] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -31,11 +32,12 @@ function ProjectCard({ project, index }) {
     offset: ["start end", "end start"],
   });
 
-  // Parallax scroll on glowing orb inside card
+  // Parallax scroll on glowing orb or image inside card
   const orbY = useTransform(scrollYProgress, [0, 1], reducedMotion ? [0, 0] : [-22, 22]);
 
   const isHeroCard = index === 0;
   const hasButtons = Boolean(project.githubUrl || project.liveUrl);
+  const hasImage = Boolean(project.image) && !imageError;
 
   return (
     <motion.div
@@ -47,35 +49,61 @@ function ProjectCard({ project, index }) {
       className={`h-full ${isHeroCard ? 'md:col-span-2' : ''}`}
     >
       <TiltCard className="dark-card group overflow-visible p-5 sm:p-8 h-full transition-all duration-300">
-        <div className={`flex flex-col h-full justify-between ${isHeroCard ? 'md:flex-row md:gap-8' : ''}`}>
-          {/* Visual Header with Procedural 3D Orb and Parallax */}
+        <div className={`flex flex-col h-full justify-between ${isHeroCard ? 'md:flex-row md:gap-8 items-stretch' : ''}`}>
+          {/* Visual Header with Real Image (or Procedural 3D Orb fallback) and Parallax */}
           <div
             className={`relative rounded-2xl bg-black/60 border border-white/[0.06] overflow-hidden flex items-center justify-center group-hover:border-[#00A3FF]/40 transition-all duration-300 ${
               isHeroCard
-                ? 'w-full md:w-5/12 h-52 md:h-auto min-h-[220px] mb-6 md:mb-0 shrink-0'
-                : 'w-full h-44 sm:h-48 mb-6'
+                ? 'w-full md:w-5/12 h-52 sm:h-64 md:h-auto md:min-h-full mb-6 md:mb-0 shrink-0 self-stretch'
+                : 'w-full h-44 sm:h-48 mb-6 shrink-0'
             }`}
           >
-            {/* Subtle background grid inside card visual */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-            
-            {/* Procedural 3D Orb with scroll parallax and card hover glow */}
-            <motion.div
-              style={{ y: orbY }}
-              className="relative z-10 transform group-hover:scale-105 transition-transform duration-500 ease-out"
-            >
-              <ProceduralOrb variant={project.orbVariant} className={isHeroCard ? 'w-44 h-44' : 'w-40 h-40'} />
-            </motion.div>
+            {hasImage ? (
+              <>
+                {/* Parallax Image container */}
+                <motion.div
+                  style={{ y: orbY }}
+                  className="absolute -inset-4 transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt || project.title}
+                    width={1600}
+                    height={1067}
+                    loading="lazy"
+                    decoding="async"
+                    onError={() => setImageError(true)}
+                    className="w-full h-full object-cover object-center contrast-[1.04] brightness-[0.92] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500"
+                  />
+                </motion.div>
+
+                {/* Subtle bottom gradient to ensure text readability */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent z-10" />
+              </>
+            ) : (
+              <>
+                {/* Subtle background grid inside card visual */}
+                <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+                
+                {/* Procedural 3D Orb fallback with scroll parallax and card hover glow */}
+                <motion.div
+                  style={{ y: orbY }}
+                  className="relative z-10 transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                >
+                  <ProceduralOrb variant={project.orbVariant} className={isHeroCard ? 'w-44 h-44' : 'w-40 h-40'} />
+                </motion.div>
+              </>
+            )}
 
             {/* Index counter badge */}
-            <div className="absolute top-3 left-4 font-mono text-[11px] text-silver-500 tracking-wider z-20">
+            <div className="absolute top-3 left-4 font-mono text-[11px] text-silver-400 font-medium tracking-wider z-20 px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/10">
               PROJ_0<Hl type="number">{index + 1}</Hl>
             </div>
 
             {/* Period and Ongoing Badge (top-right of visual) */}
             <div className="absolute top-3 right-4 flex items-center gap-2 z-20">
               {project.status === 'ongoing' && (
-                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#00A3FF]/15 border border-[#00A3FF]/40 text-[10px] font-mono text-[#38bdf8]">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-sm border border-[#00A3FF]/50 text-[10px] font-mono text-[#38bdf8]">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A3FF] opacity-75" />
                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00A3FF]" />
@@ -83,14 +111,27 @@ function ProjectCard({ project, index }) {
                   <span>Ongoing</span>
                 </span>
               )}
-              <span className="font-mono text-[11px] text-silver-400">
+              <span className="font-mono text-[11px] text-silver-300 px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/10">
                 <RichText text={project.period} />
               </span>
             </div>
 
-            {/* Subtitle tag */}
-            <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-silver-400 z-20">
-              <span>{project.subtitle}</span>
+            {/* Subtitle tag and Image Credit (bottom of visual) */}
+            <div className="absolute bottom-2.5 left-3 right-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 z-20 pointer-events-none">
+              <span className="text-[10px] sm:text-[11px] font-mono text-silver-300 px-2 py-0.5 rounded bg-black/75 backdrop-blur-sm border border-white/10 w-fit max-w-full truncate">
+                {project.subtitle}
+              </span>
+              {project.imageCredit && project.imageCreditUrl && hasImage && (
+                <a
+                  href={project.imageCreditUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Photo credit for ${project.title}`}
+                  className="pointer-events-auto text-[9px] font-mono text-silver-400 hover:text-white px-1.5 py-0.5 rounded bg-black/75 backdrop-blur-sm border border-white/10 transition-colors w-fit self-end shrink-0"
+                >
+                  {project.imageCredit}
+                </a>
+              )}
             </div>
           </div>
 
